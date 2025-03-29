@@ -1,4 +1,4 @@
-name: Python CI
+name: Python CI with Coverage and Lint
 
 on:
   push:
@@ -18,5 +18,15 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Run tests
-      run: python -m unittest discover tests
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run unit tests with coverage
+      run: |
+        coverage run -m unittest discover -s tests
+        coverage report
+        coverage xml
+
+    - name: Run flake8 (static analysis)
+      run: flake8 src tests
