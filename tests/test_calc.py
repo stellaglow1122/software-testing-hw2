@@ -3,7 +3,7 @@ from src.calculator import Calculator
 
 
 class TestCalculator(unittest.TestCase):
-    
+
     def setUp(self):
         self.calc = Calculator()
 
