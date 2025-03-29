@@ -51,6 +51,30 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.calc.minus(3, None)
 
+    def test_multiply_positive_numbers(self):
+        result = self.calc.multiply(3, 4)
+        self.assertEqual(result, 12)
+
+    def test_multiply_negative_numbers(self):
+        result = self.calc.multiply(-3, -4)
+        self.assertEqual(result, 12)
+
+    def test_multiply_mixed_sign(self):
+        result = self.calc.multiply(-3, 4)
+        self.assertEqual(result, -12)
+
+    def test_multiply_zero(self):
+        result = self.calc.multiply(3, 0)
+        self.assertEqual(result, 0)
+
+    def test_multiply_floats(self):
+        result = self.calc.multiply(2.5, 3.0)
+        self.assertAlmostEqual(result, 7.5, places=1)
+
+    def test_multiply_invalid_type(self):
+        with self.assertRaises(TypeError):
+            self.calc.multiply("a", 3)
+
 
 if __name__ == "__main__":
     unittest.main()
