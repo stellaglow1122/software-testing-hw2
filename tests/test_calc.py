@@ -75,6 +75,34 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.calc.multiply("a", 3)
 
+    def test_divide_positive_numbers(self):
+        result = self.calc.divide(10, 2)
+        self.assertEqual(result, 5)
+
+    def test_divide_negative_numbers(self):
+        result = self.calc.divide(-10, -2)
+        self.assertEqual(result, 5)
+
+    def test_divide_mixed_sign(self):
+        result = self.calc.divide(-10, 2)
+        self.assertEqual(result, -5)
+
+    def test_divide_floats(self):
+        result = self.calc.divide(7.5, 2.5)
+        self.assertAlmostEqual(result, 3.0, places=1)
+
+    def test_divide_zero_dividend(self):
+        result = self.calc.divide(0, 5)
+        self.assertEqual(result, 0)
+
+    def test_divide_by_zero(self):
+        with self.assertRaises(ZeroDivisionError):
+            self.calc.divide(5, 0)
+
+    def test_divide_invalid_type(self):
+        with self.assertRaises(TypeError):
+            self.calc.divide("a", 3)
+
 
 if __name__ == "__main__":
     unittest.main()
